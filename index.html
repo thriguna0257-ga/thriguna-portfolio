@@ -10,17 +10,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- AOS (Animate On Scroll) -->
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Space Grotesk + JetBrains Mono -->
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #050814;
         }
 
         .font-mono-code {
@@ -28,22 +28,30 @@
         }
 
         .bg-grid {
-            background-size: 38px 38px;
+            background-size: 32px 32px;
             background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+                radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        .glass-nav {
+            background: rgba(5, 8, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .glass-card {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(10, 16, 33, 0.65);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(56, 189, 248, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
-            border-color: rgba(34, 211, 238, 0.5);
-            box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.28);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.2);
         }
 
         @keyframes marquee {
@@ -59,20 +67,20 @@
         .animate-marquee {
             display: flex;
             width: 200%;
-            animation: marquee 24s linear infinite;
+            animation: marquee 25s linear infinite;
         }
 
         .animate-marquee:hover {
             animation-play-state: paused;
         }
 
-        .glow-sphere {
+        .ambient-glow {
             position: absolute;
-            width: 380px;
-            height: 380px;
+            width: 450px;
+            height: 450px;
             border-radius: 50%;
-            filter: blur(110px);
-            opacity: 0.22;
+            filter: blur(130px);
+            opacity: 0.15;
             pointer-events: none;
         }
     </style>
@@ -80,92 +88,125 @@
 
 <body class="text-slate-100 bg-grid relative overflow-x-hidden selection:bg-cyan-500 selection:text-black">
 
-    <!-- Ambient Light Background Glows -->
-    <div class="glow-sphere bg-cyan-500 top-0 left-[-100px]"></div>
-    <div class="glow-sphere bg-violet-600 top-[750px] right-[-120px]"></div>
-    <div class="glow-sphere bg-blue-600 bottom-[400px] left-[-80px]"></div>
+    <!-- Ambient Light Effects -->
+    <div class="ambient-glow bg-cyan-500 -top-20 -left-20"></div>
+    <div class="ambient-glow bg-indigo-600 top-1/3 -right-20"></div>
+    <div class="ambient-glow bg-blue-600 bottom-20 left-10"></div>
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80 z-50">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#hero"
-                class="text-lg sm:text-xl font-extrabold tracking-tight text-white flex items-center gap-1 font-mono-code">
-                <span class="text-cyan-400">&lt;</span>THRIGUNA.G.A<span class="text-cyan-400">/&gt;</span>
+    <!-- Refined Navbar -->
+    <nav class="fixed top-0 left-0 w-full glass-nav z-50">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+
+            <!-- Modern Professional Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-slate-950 font-extrabold text-sm tracking-wider shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+                    TG
+                </div>
+                <div>
+                    <span
+                        class="text-base font-bold tracking-tight text-white block group-hover:text-cyan-400 transition-colors">THRIGUNA
+                        G A</span>
+                    <span class="text-[10px] font-mono-code text-slate-400 block tracking-widest uppercase">Cyber
+                        Defense</span>
+                </div>
             </a>
-            <div class="space-x-6 text-sm font-medium text-slate-300 hidden sm:block">
-                <a href="#about" class="hover:text-cyan-400 transition">About</a>
-                <a href="#education" class="hover:text-cyan-400 transition">Education</a>
-                <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
-                <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+
+            <!-- Real-Time Clock & Nav Links -->
+            <div class="flex items-center gap-6">
+                <!-- Live Clock Display -->
+                <div
+                    class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 text-xs font-mono-code text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="live-clock" class="text-cyan-300">--:--:-- IST</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+                    <a href="#about" class="hover:text-cyan-400 transition">About</a>
+                    <a href="#education" class="hover:text-cyan-400 transition">Education</a>
+                    <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
+                    <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
+                </div>
+
+                <a href="#contact"
+                    class="text-xs font-semibold bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-4 py-2 rounded-lg transition duration-200">
+                    Get in Touch
+                </a>
             </div>
-            <a href="#contact"
-                class="sm:hidden text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 px-3.5 py-1.5 rounded-full font-mono-code">Get
-                in Touch</a>
+
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center pt-24 pb-14 px-6 max-w-6xl mx-auto relative">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full">
+    <section id="hero" class="min-h-screen flex items-center pt-28 pb-16 px-5 sm:px-8 max-w-6xl mx-auto relative">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
 
-            <div class="lg:col-span-7" data-aos="fade-up" data-aos-duration="1000">
+            <div class="lg:col-span-7" data-aos="fade-up" data-aos-duration="900">
                 <div
-                    class="inline-flex items-center gap-2.5 py-1.5 px-4 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-semibold tracking-wide mb-6 font-mono-code">
+                    class="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full bg-cyan-950/70 border border-cyan-500/20 text-cyan-300 text-xs font-mono-code mb-6">
                     <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                    SEC_OPS // READY FOR OPPORTUNITIES
+                    SEC_OPS // AVAILABLE FOR INTERNSHIPS
                 </div>
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
                     Hi, I'm <br />
                     <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500 font-extrabold">
                         Thriguna G.A.
                     </span>
                 </h1>
-                <p class="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed mb-4">
-                    Aspiring Cybersecurity Professional &amp; Computer Science Diploma Finalist.
+
+                <p class="text-base sm:text-lg text-slate-300 font-medium mb-3">
+                    Aspiring Cybersecurity Professional & Computer Science Diploma Finalist.
                 </p>
-                <p class="text-sm sm:text-base text-slate-400 max-w-xl leading-relaxed mb-8">
+                <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl mb-8">
                     Building secure systems, exploring ethical hacking, and defending digital assets through practical,
-                    real-world projects.
+                    real-world defensive tooling.
                 </p>
-                <div class="flex flex-wrap gap-4">
+
+                <div class="flex flex-wrap items-center gap-4">
                     <a href="#projects"
-                        class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-7 py-3.5 rounded-xl transition duration-300 flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                        class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold px-7 py-3 rounded-xl transition duration-300 flex items-center gap-2 shadow-lg shadow-cyan-500/20 text-sm">
                         <span>View Projects</span>
-                        <i class="fa-solid fa-arrow-down text-sm"></i>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/thriguna-g-a-866930445" target="_blank"
-                        class="glass-card hover:bg-slate-800/80 px-6 py-3.5 rounded-xl transition duration-300 text-slate-200 flex items-center gap-2">
-                        <span>LinkedIn Profile</span>
-                        <i class="fa-brands fa-linkedin text-xs text-cyan-400"></i>
+                    <a href="tel:6360711538"
+                        class="glass-card px-6 py-3 rounded-xl text-slate-300 hover:text-white transition duration-300 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-xs text-cyan-400"></i>
+                        <span>+91 6360711538</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Cyber Terminal HUD Widget -->
+            <!-- Real-Time HUD Terminal Box -->
             <div class="lg:col-span-5" data-aos="zoom-in" data-aos-duration="1000">
                 <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                    <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                    <div
+                        class="bg-slate-900/90 px-4 py-3 border-b border-slate-800/80 flex items-center justify-between">
                         <div class="flex gap-2">
                             <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
                             <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
                             <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
                         </div>
-                        <span class="font-mono-code text-xs text-slate-400">sentinel_guard.sh</span>
+                        <div class="flex items-center gap-2 text-slate-400 text-xs font-mono-code">
+                            <i class="fa-solid fa-clock text-cyan-400 text-[10px]"></i>
+                            <span id="terminal-clock">--:--:-- IST</span>
+                        </div>
                     </div>
-                    <div class="p-5 font-mono-code text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
-                        <p class="text-slate-500"># Cyber Defense &amp; App Security</p>
-                        <p><span class="text-cyan-400">➜</span> <span class="text-sky-400">target:</span> Network &amp;
-                            Web App Security</p>
-                        <p><span class="text-cyan-400">➜</span> <span class="text-sky-400">framework:</span> WAF / IDS
-                            Active Defense</p>
-                        <p><span class="text-cyan-400">➜</span> <span class="text-sky-400">testing:</span> <span
-                                class="text-emerald-400">OWASP Top 10 Auditing</span></p>
-                        <div
-                            class="p-3 rounded-xl bg-slate-950/80 border border-cyan-500/20 text-xs text-cyan-300 flex items-center gap-2">
-                            <i class="fa-solid fa-shield-virus text-cyan-400"></i>
-                            <span>Vulnerability Testing &amp; Protection Active</span>
+                    <div
+                        class="p-6 font-mono-code text-xs sm:text-sm text-slate-300 space-y-3.5 leading-relaxed bg-slate-950/60">
+                        <p class="text-slate-500">// DEFENSIVE ARCHITECTURE MONITOR</p>
+                        <p><span class="text-cyan-400">#</span> <span class="text-slate-400">Target Focus:</span>
+                            Network & Web App Security</p>
+                        <p><span class="text-cyan-400">#</span> <span class="text-slate-400">Architecture:</span> WAF &
+                            IDS Active Monitoring</p>
+                        <p><span class="text-cyan-400">#</span> <span class="text-slate-400">Auditing:</span> <span
+                                class="text-emerald-400">OWASP Top 10 Compliant</span></p>
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-400">System Status:</span>
+                            <span class="text-cyan-400 font-semibold flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> ARMED & READY
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -174,39 +215,39 @@
         </div>
     </section>
 
-    <!-- Running Tech Ticker / Marquee -->
-    <div class="py-5 border-y border-slate-800/80 bg-slate-950/60 overflow-hidden relative">
+    <!-- Infinite Running Marquee Bar -->
+    <div class="py-4 border-y border-slate-800/80 bg-slate-950/50 overflow-hidden relative">
         <div
-            class="animate-marquee whitespace-nowrap flex gap-10 items-center text-xs sm:text-sm font-mono-code text-slate-400 uppercase tracking-widest">
+            class="animate-marquee whitespace-nowrap flex gap-10 items-center text-xs font-mono-code text-slate-400 uppercase tracking-widest">
             <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>Network Security</span>
             <span><i class="fa-solid fa-code text-cyan-400 mr-2.5"></i>Java OOP Development</span>
             <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>Web App Security</span>
-            <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>WAF &amp; IDS Concepts</span>
-            <span><i class="fa-solid fa-code text-cyan-400 mr-2.5"></i>Python Scripting</span>
+            <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>WAF & IDS Concepts</span>
+            <span><i class="fa-solid fa-terminal text-cyan-400 mr-2.5"></i>Kali Linux & Burp Suite</span>
             <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>OWASP Top 10</span>
-            <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>Kali Linux &amp; Burp Suite</span>
-            <!-- Repeated for infinite ticker -->
+            <span><i class="fa-solid fa-code text-cyan-400 mr-2.5"></i>Python Scripting</span>
+            <!-- Repeated for infinite loop -->
             <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>Network Security</span>
             <span><i class="fa-solid fa-code text-cyan-400 mr-2.5"></i>Java OOP Development</span>
             <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>Web App Security</span>
-            <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>WAF &amp; IDS Concepts</span>
-            <span><i class="fa-solid fa-code text-cyan-400 mr-2.5"></i>Python Scripting</span>
+            <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>WAF & IDS Concepts</span>
+            <span><i class="fa-solid fa-terminal text-cyan-400 mr-2.5"></i>Kali Linux & Burp Suite</span>
             <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>OWASP Top 10</span>
-            <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-2.5"></i>Kali Linux &amp; Burp Suite</span>
+            <span><i class="fa-solid fa-code text-cyan-400 mr-2.5"></i>Python Scripting</span>
         </div>
     </div>
 
     <!-- About Section -->
-    <section id="about" class="py-24 px-6 max-w-6xl mx-auto">
+    <section id="about" class="py-24 px-5 sm:px-8 max-w-6xl mx-auto">
         <div class="glass-card rounded-2xl p-8 sm:p-12 relative overflow-hidden" data-aos="fade-up">
             <div class="max-w-3xl">
-                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">01. // About Me</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-6">Practical Security &amp; Defense
-                </h2>
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest block mb-2">01 //
+                    Profile</span>
+                <h2 class="text-3xl font-bold text-white mb-6">About Me</h2>
                 <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-5">
-                    My name is <strong class="text-white">Thriguna G.A.</strong> I am currently pursuing my final year
-                    Diploma in Computer Science. I am an aspiring cybersecurity professional passionate about network
-                    security, ethical hacking, web application security, and digital defense.
+                    My name is <strong class="text-white font-semibold">Thriguna G.A.</strong> I am currently pursuing
+                    my final year Diploma in Computer Science. I am an aspiring cybersecurity professional passionate
+                    about network security, ethical hacking, web application security, and digital defense.
                 </p>
                 <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
                     Rather than relying solely on theoretical concepts, I believe in building deep technical knowledge
@@ -217,24 +258,24 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-20 px-6 max-w-6xl mx-auto">
-        <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">02. // Education</span>
-        <h2 class="text-3xl font-extrabold text-white mt-1 mb-10">Academic Journey</h2>
+    <section id="education" class="py-16 px-5 sm:px-8 max-w-6xl mx-auto">
+        <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest block mb-2">02 // Academics</span>
+        <h2 class="text-3xl font-bold text-white mb-8">Education</h2>
 
-        <div class="glass-card rounded-2xl p-8 border-l-4 border-l-cyan-400 relative overflow-hidden"
-            data-aos="fade-up">
+        <div class="glass-card rounded-2xl p-8 border-l-4 border-l-cyan-400" data-aos="fade-up">
             <div class="flex flex-col sm:flex-row justify-between sm:items-start gap-4 mb-4">
                 <div>
-                    <h3 class="text-2xl font-bold text-white mb-1">Diploma in Computer Science &amp; Engineering</h3>
-                    <p class="text-cyan-400 text-base font-medium">Shri Kengappa Nayaka Government Polytechnic,
-                        Daginakatte, Karnataka</p>
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">Diploma in Computer Science & Engineering
+                    </h3>
+                    <p class="text-cyan-400 text-sm sm:text-base font-medium">Shri Kengappa Nayaka Government
+                        Polytechnic, Daginakatte, Karnataka</p>
                 </div>
                 <span
-                    class="font-mono-code text-xs px-3.5 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-800/60 text-cyan-300 w-fit">
+                    class="font-mono-code text-xs px-3 py-1 rounded-md bg-cyan-950 text-cyan-300 border border-cyan-800/60 w-fit">
                     Final Year (6th Semester)
                 </span>
             </div>
-            <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-3xl">
+            <p class="text-slate-400 text-sm leading-relaxed max-w-3xl">
                 Focusing on core computer science fundamentals, system programming, object-oriented software
                 development, and networking principles.
             </p>
@@ -242,50 +283,43 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 max-w-6xl mx-auto">
-        <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">03. // Skills &amp; Tools</span>
-        <h2 class="text-3xl font-extrabold text-white mt-1 mb-10">Technical Repertoire</h2>
+    <section id="skills" class="py-16 px-5 sm:px-8 max-w-6xl mx-auto">
+        <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest block mb-2">03 // Toolset</span>
+        <h2 class="text-3xl font-bold text-white mb-10">Skills & Tools</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <!-- Languages & Core -->
-            <div class="glass-card p-7 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex items-center gap-3 mb-5">
-                    <i class="fa-solid fa-code text-cyan-400 text-xl"></i>
-                    <h4 class="font-bold text-white text-lg">Languages &amp; Core</h4>
-                </div>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="font-bold text-white text-lg mb-5 flex items-center gap-2">
+                    <i class="fa-solid fa-code text-cyan-400 text-base"></i> Languages & Core
+                </h4>
                 <div class="flex flex-wrap gap-2 text-xs font-mono-code text-slate-300">
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Java</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Python</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">HTML5</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">CSS3</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">JavaScript</span>
-                    <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Git &amp; GitHub</span>
+                    <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Git & GitHub</span>
                 </div>
             </div>
 
-            <!-- Cybersecurity Focus -->
-            <div class="glass-card p-7 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                <div class="flex items-center gap-3 mb-5">
-                    <i class="fa-solid fa-shield-virus text-cyan-400 text-xl"></i>
-                    <h4 class="font-bold text-white text-lg">Cybersecurity Focus</h4>
-                </div>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                <h4 class="font-bold text-white text-lg mb-5 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-virus text-cyan-400 text-base"></i> Cybersecurity Focus
+                </h4>
                 <div class="flex flex-wrap gap-2 text-xs font-mono-code text-cyan-300">
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Network Security</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Web App Security</span>
-                    <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">WAF &amp; IDS
-                        Concepts</span>
+                    <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">WAF & IDS Concepts</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Ethical Hacking</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">OWASP Top 10</span>
                 </div>
             </div>
 
-            <!-- Tools & Environments -->
-            <div class="glass-card p-7 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
-                <div class="flex items-center gap-3 mb-5">
-                    <i class="fa-solid fa-terminal text-cyan-400 text-xl"></i>
-                    <h4 class="font-bold text-white text-lg">Tools &amp; Labs</h4>
-                </div>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                <h4 class="font-bold text-white text-lg mb-5 flex items-center gap-2">
+                    <i class="fa-solid fa-terminal text-cyan-400 text-base"></i> Environments & Labs
+                </h4>
                 <div class="flex flex-wrap gap-2 text-xs font-mono-code text-slate-300">
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">Linux / Kali Linux</span>
                     <span class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">VirtualBox</span>
@@ -299,77 +333,60 @@
     </section>
 
     <!-- Featured Projects -->
-    <section id="projects" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
+    <section id="projects" class="py-16 px-5 sm:px-8 max-w-6xl mx-auto">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-3">
             <div>
-                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">04. // Featured
-                    Projects</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Defensive &amp; Software Projects</h2>
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest block mb-2">04 //
+                    Works</span>
+                <h2 class="text-3xl font-bold text-white">Featured Projects</h2>
             </div>
-            <a href="https://github.com/thriguna0257-ga" target="_blank"
-                class="text-sm text-cyan-400 hover:text-cyan-300 flex items-center gap-2">
-                <span>GitHub Repositories</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            <a href="https://github.com/thriguna0257" target="_blank"
+                class="text-xs font-mono-code text-cyan-400 hover:underline flex items-center gap-2">
+                <span>github.com/thriguna0257</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <!-- Project 1: SentinelShield -->
-            <div class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 group"
-                data-aos="fade-up" data-aos-delay="100">
+            <!-- Project 1 -->
+            <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between" data-aos="fade-up"
+                data-aos-delay="100">
                 <div>
-                    <div class="flex justify-between items-center mb-6">
-                        <span
-                            class="p-3 rounded-xl bg-cyan-950/80 text-cyan-400 border border-cyan-800/60 text-xl group-hover:scale-110 transition duration-300">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </span>
-                        <div class="flex gap-2">
-                            <span
-                                class="font-mono-code text-xs px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">Unified
-                                Mentor</span>
-                        </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-mono-code text-cyan-400">Cybersecurity Internship Project</span>
+                        <span class="text-[11px] font-mono-code px-2.5 py-1 rounded bg-slate-800 text-slate-300">Unified
+                            Mentor</span>
                     </div>
-                    <span class="text-xs font-mono-code text-slate-400 uppercase tracking-wider">Cybersecurity
-                        Internship Project</span>
-                    <h3 class="text-2xl font-bold text-white mt-1 mb-4 group-hover:text-cyan-400 transition">
-                        SentinelShield</h3>
+                    <h3 class="text-2xl font-bold text-white mb-3">SentinelShield</h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         A Web Application Firewall (WAF) and Intrusion Detection System (IDS) designed to monitor,
-                        detect, and mitigate unauthorized activities and security threats in real-time.
+                        detect, and mitigate unauthorized activities and security threats.
                     </p>
                 </div>
                 <div>
                     <div
-                        class="flex flex-wrap gap-2 pt-6 border-t border-slate-800 font-mono-code text-xs text-cyan-300 mb-4">
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">Python / Scripts</span>
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">WAF Concepts</span>
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">IDS Monitoring</span>
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">Security Logs</span>
+                        class="flex flex-wrap gap-2 pt-5 border-t border-slate-800 font-mono-code text-xs text-cyan-300">
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">Python /
+                            Scripts</span>
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">WAF Concepts</span>
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">IDS Monitoring</span>
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">Security Logs</span>
                     </div>
-                    <a href="https://github.com/thriguna0257-ga/SentinelShield" target="_blank"
-                        class="inline-flex items-center gap-2 text-xs font-mono-code text-cyan-400 hover:underline">
-                        View Repository <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
                 </div>
             </div>
 
-            <!-- Project 2: Java Quiz Application -->
-            <div class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 group"
-                data-aos="fade-up" data-aos-delay="200">
+            <!-- Project 2 -->
+            <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between" data-aos="fade-up"
+                data-aos-delay="200">
                 <div>
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-mono-code text-cyan-400">Software Development</span>
                         <span
-                            class="p-3 rounded-xl bg-cyan-950/80 text-cyan-400 border border-cyan-800/60 text-xl group-hover:scale-110 transition duration-300">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </span>
-                        <span class="font-mono-code text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">Academic
+                            class="text-[11px] font-mono-code px-2.5 py-1 rounded bg-slate-800 text-slate-300">Academic
                             Project</span>
                     </div>
-                    <span class="text-xs font-mono-code text-slate-400 uppercase tracking-wider">Software
-                        Development</span>
-                    <h3 class="text-2xl font-bold text-white mt-1 mb-4 group-hover:text-cyan-400 transition">Java Quiz
-                        Application</h3>
+                    <h3 class="text-2xl font-bold text-white mb-3">Java Quiz Application</h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         A fully functional interactive quiz application built using Object-Oriented Programming (OOP)
                         principles in Java, featuring clean score tracking and secure logic management.
@@ -377,15 +394,11 @@
                 </div>
                 <div>
                     <div
-                        class="flex flex-wrap gap-2 pt-6 border-t border-slate-800 font-mono-code text-xs text-cyan-300 mb-4">
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">Java</span>
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">OOP Principles</span>
-                        <span class="bg-slate-900 border border-slate-800 px-3 py-1 rounded-lg">Logic Design</span>
+                        class="flex flex-wrap gap-2 pt-5 border-t border-slate-800 font-mono-code text-xs text-cyan-300">
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">Java</span>
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">OOP Principles</span>
+                        <span class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-md">Logic Design</span>
                     </div>
-                    <a href="https://github.com/thriguna0257-ga" target="_blank"
-                        class="inline-flex items-center gap-2 text-xs font-mono-code text-cyan-400 hover:underline">
-                        View on GitHub <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
                 </div>
             </div>
 
@@ -393,46 +406,41 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 px-6 max-w-6xl mx-auto text-center relative" data-aos="fade-up">
+    <section id="contact" class="py-24 px-5 sm:px-8 max-w-6xl mx-auto text-center relative" data-aos="fade-up">
         <div class="glass-card rounded-2xl p-8 sm:p-14 max-w-3xl mx-auto">
-            <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">05. // Get In Touch</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">Let's Connect &amp; Collaborate</h2>
-            <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-10">
-                I am currently looking for internship opportunities, entry-level security roles, and networking
-                opportunities with professionals in the cybersecurity field. Feel free to reach out!
+            <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest block mb-2">05 // Contact</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Let's Connect & Collaborate</h2>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-lg mx-auto mb-10">
+                Currently seeking internship opportunities and entry-level security roles. Feel free to connect
+                directly!
             </p>
 
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <div class="flex flex-wrap justify-center gap-4">
                 <a href="tel:6360711538"
-                    class="glass-card px-6 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2.5 text-sm text-slate-200">
+                    class="glass-card px-5 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2 text-sm text-slate-200">
                     <i class="fa-solid fa-phone text-cyan-400"></i>
                     <span>+91 6360711538</span>
                 </a>
-                <a href="mailto:thriguna0257@gmail.com"
-                    class="glass-card px-6 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2.5 text-sm text-slate-200">
-                    <i class="fa-solid fa-envelope text-cyan-400"></i>
-                    <span>thriguna0257@gmail.com</span>
-                </a>
-                <a href="https://www.linkedin.com/in/thriguna-g-a-866930445" target="_blank"
-                    class="glass-card px-6 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2.5 text-sm text-slate-200">
+                <a href="https://www.linkedin.com/in/thriguna-ga-866930445" target="_blank"
+                    class="glass-card px-5 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2 text-sm text-slate-200">
                     <i class="fa-brands fa-linkedin text-cyan-400"></i>
-                    <span>LinkedIn Profile</span>
+                    <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/thriguna0257-ga" target="_blank"
-                    class="glass-card px-6 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2.5 text-sm text-slate-200">
+                <a href="https://github.com/thriguna0257" target="_blank"
+                    class="glass-card px-5 py-3 rounded-xl hover:text-cyan-400 transition flex items-center gap-2 text-sm text-slate-200">
                     <i class="fa-brands fa-github text-cyan-400"></i>
-                    <span>GitHub Profile</span>
+                    <span>GitHub</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-600 font-mono-code">
-        <p>&copy; 2026 Thriguna G.A. Designed &amp; Built with Security in Mind.</p>
+    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500 font-mono-code">
+        <p>&copy; 2026 THRIGUNA G A. DESIGNED & BUILT WITH SECURITY IN MIND.</p>
     </footer>
 
-    <!-- AOS Script Init -->
+    <!-- AOS Animation Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -440,6 +448,27 @@
             duration: 800,
             easing: 'ease-out-cubic',
         });
+
+        // Real-Time Dynamic Clock Script (IST)
+        function updateClock() {
+            const now = new Date();
+            const options = {
+                timeZone: 'Asia/Kolkata',
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            const timeString = now.toLocaleTimeString('en-US', options) + ' IST';
+
+            const navClock = document.getElementById('live-clock');
+            const termClock = document.getElementById('terminal-clock');
+
+            if (navClock) navClock.textContent = timeString;
+            if (termClock) termClock.textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 
